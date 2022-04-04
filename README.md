@@ -7,8 +7,14 @@ This is the React frontend for streaming tweets based on search texts.
 
 ## HOW TO USE
 
-**Before starting the frontend, make sure the backend is running. The backend project can be found in this url-**
+<br/>
+
+### Before starting the frontend, **make sure the backend is running**. The backend project can be found in this url-
 https://github.com/anupjyotikalita/twitter-streamer-backend
+
+
+<br/>
+
 
 *Steps to start the frontend*
 
