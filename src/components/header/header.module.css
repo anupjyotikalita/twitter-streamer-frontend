@@ -1,0 +1,22 @@
+.container{
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    /* position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10; */
+}
+
+.searchBarContainer, .nameContainer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.nameContainer {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}

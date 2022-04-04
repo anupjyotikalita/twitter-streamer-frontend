@@ -1,0 +1,66 @@
+.container{
+    margin: 15px 0;
+    padding: 15px;
+    width: 60%;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.profilePicContainer{
+    text-align: center;
+}
+
+.profilePic{
+    /* width: 65px;
+    height: 65px; */
+    color: white;
+    border-radius: 50%;
+}
+
+.tweetContainer{
+    width: 100%;
+    padding: 0 10px;
+    color: white;
+}
+
+.profileName{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.userName, .dot, .time{
+    font-size: 16px;
+    padding: 0 2px 0 4px;
+    color: gray;
+}
+
+.textContainer{
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.imageContainer{
+    padding: 20px 0;
+    width: 100%;
+}
+
+.image{
+  border-radius: 10px;
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.optionCol{
+    text-align: center;
+}
+
+.optionCol > p {
+    margin-top: -10px !important;
+    display: inline-block;
+}
+
+.optionIcon{
+    margin-top: -5px !important;
+    padding-right: 5px !important;
+}

@@ -1,0 +1,82 @@
+const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const getClientEnvironment = require('./env');
+
+const appPath = fs.realpathSync(process.cwd());
+const srcPath = path.resolve(appPath, 'src');
+const distPath = path.resolve(appPath, 'public');
+const entryPath = path.resolve(appPath, 'src/core');
+
+const getDevOptions = argv => (argv.mode !== 'production') ? ({
+  devtool: 'eval-source-map',
+  devServer: {
+    contentBase: distPath,
+    historyApiFallback: true,
+    port: 8000,
+  },
+}) : {};
+
+const getBaseOptions = () => ({
+  mode: 'development',
+  entry: entryPath,
+  output: {
+    filename: 'bundle.js',
+    path: distPath,
+    publicPath: '/',
+  },
+  resolve: {
+    modules: [srcPath, 'node_modules'],
+  },
+  module: {
+    rules: [{
+      test: /\.jsx?$/i,
+      exclude: /node_modules/,
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-transform-runtime'],
+        },
+      }],
+    }, {
+      test: /\.module\.css$/i,
+      use: [{
+        loader: 'style-loader',
+        options: {
+          esModule: true,
+        },
+      }, {
+        loader: 'css-loader',
+        options: {
+          modules: { localIdentName: '[name]__[local]___[hash:base64:5]' },
+        },
+      }],
+    }, {
+      test: /\.css$/i,
+      exclude: /\.module\.css$/i,
+      use: ['style-loader', 'css-loader'],
+    }, {
+      test: /\.(png|jpg|mp4|mkv|mov|otf|woff|svg|jpeg|xlsx|mp3|ttf|gif)$/,
+      use: [
+        {
+          loader: require.resolve('file-loader'),
+          options: {
+            name: 'media/[name].[hash:8].[ext]',
+          },
+        },
+      ],
+    }],
+  }, 
+  plugins: [
+    new HtmlWebpackPlugin({ inject: true, template: 'src/core/index.html' }),
+    new webpack.DefinePlugin(getClientEnvironment()),
+  ],
+});
+
+module.exports = {
+  getBaseOptions,
+  getDevOptions,
+};
